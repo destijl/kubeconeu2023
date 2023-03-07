@@ -1,0 +1,20 @@
+# don't display the copyright page
+startup_message off
+
+# increase scrollback buffer size
+defscrollback 10000
+
+bind j focus down
+bind k focus up
+bind l focus right
+bind h focus left
+
+split
+# create windows
+screen -t container /bin/bash
+screen -t host /bin/bash
+
+focus down
+select 1
+focus up
+select 0
