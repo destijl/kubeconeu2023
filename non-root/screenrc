@@ -11,8 +11,8 @@ bind h focus left
 
 split
 # create windows
-screen -t container /bin/bash
-screen -t host /bin/bash
+screen -t container /bin/bash container.sh
+screen -t host watch -n1 ps -C nginx -o user,uid,cmd
 
 focus down
 select 1
