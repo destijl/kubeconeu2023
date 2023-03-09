@@ -1,0 +1,17 @@
+
+
+
+        initContainers:
+        - name: konnectivity-server-init-container
+          command:
+          - /bin/bash
+          - '-c'
+          - |-
+            chown 2046:2046 /etc/srv/kubernetes/konnectivity-server &&
+            chmod g+w /etc/srv/kubernetes/konnectivity-server
+          volumeMounts:
+          - mountPath: /etc/srv/kubernetes/konnectivity-server
+            name: konnectivity-uds
+
+
+

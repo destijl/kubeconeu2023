@@ -1,0 +1,11 @@
+
+
+
+        volumes:
+        - name: konnectivity-uds
+          hostPath:
+            path: /etc/srv/kubernetes/konnectivity-server
+            type: DirectoryOrCreate
+
+
+

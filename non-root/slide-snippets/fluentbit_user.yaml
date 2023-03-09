@@ -1,0 +1,13 @@
+
+
+
+      name: fluentbit
+        securityContext:
+          runAsUser: 2048
+          runAsGroup: 2048
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - all
+
+

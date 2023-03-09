@@ -1,0 +1,8 @@
+
+
+      	containers:
+      	- name: konnectivity-server-container
+      	  securityContext:
+      	    runAsUser: 2046
+      	    runAsGroup: 2046
+
