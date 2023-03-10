@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: non-root
+spec:
+  securityContext:
+    runAsUser: 1000
+    runAsGroup: 1000
+  containers:
+  - name: non-root
+    image: ubuntu
+    command:
+    - "/bin/bash"
+    - "-c"
+    - "while true; do echo hello > /etc/non-root-config; sleep 10; done"
+    volumeMounts:
+    - mountPath: /etc/non-root-config
+      name: test-volume
+  volumes:
+  - name: test-volume
+    hostPath:
+      path: /etc/non-root-config
+      type: FileOrCreate

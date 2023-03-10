@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: non-root-init
+spec:
+  securityContext:
+    runAsUser: 1000
+    runAsGroup: 1000
+    fsGroup: 1000
+  initContainers:
+  - name: non-root-init
+    image: ubuntu
+    securityContext:
+      runAsUser: 0
+      runAsGroup: 0
+    command:
+    - "/bin/bash"
+    - "-c"
+    - "chown 1000 /etc/non-root-config"
+    volumeMounts:
+    - mountPath: /etc/non-root-config
+      name: test-volume
+  containers:
+  - name: non-root
+    image: ubuntu
+    command:
+    - "/bin/bash"
+    - "-c"
+    - "while true; do echo hello > /etc/non-root-config; sleep 10; done"
+    volumeMounts:
+    - mountPath: /etc/non-root-config
+      name: test-volume
+  volumes:
+  - name: test-volume
+    hostPath:
+      path: /etc/non-root-config
+      type: FileOrCreate
+  
