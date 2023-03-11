@@ -1,8 +1,0 @@
-
-
-        volumes:
-        - name: pki
-          hostPath:
-            path: /etc/srv/kubernetes/pki
-
-

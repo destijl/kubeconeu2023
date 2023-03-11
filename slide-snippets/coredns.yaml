@@ -1,6 +1,6 @@
 
 
-      name: "kube-apiserver"
+      name: "coredns"
       securityContext:
         runAsUser: 2004
         runAsGroup: 2004

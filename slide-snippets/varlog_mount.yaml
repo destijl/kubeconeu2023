@@ -1,0 +1,11 @@
+
+
+
+      volumes:
+      - name: varlog
+      	hostPath:
+      	  path: /var/log
+      	  type: Directory 
+
+
+

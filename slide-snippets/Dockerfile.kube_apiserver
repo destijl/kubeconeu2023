@@ -1,6 +1,0 @@
-
-
-
-       RUN setcap cap_net_bind_service=+ep /apiserver
-
-

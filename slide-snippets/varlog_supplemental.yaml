@@ -3,8 +3,9 @@
           spec:
             securityContext:
               supplementalGroups:
-              # /etc/srv/kubernetes/pki/ readers group
-              - 2042
+              # system-journal group on COS
+              - 270
+
 
 
 
