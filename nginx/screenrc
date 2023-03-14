@@ -16,7 +16,7 @@ screen -t host watch -n1 ps -C nginx -o user,uid,cmd
 
 focus down
 select 1
-#resize -v -10
+resize -v -2
 focus up
 select 0
 
