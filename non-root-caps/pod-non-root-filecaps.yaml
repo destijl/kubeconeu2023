@@ -4,17 +4,17 @@ metadata:
   name: pod-non-root-filecaps
 spec:
   containers:
-  - name: server
-    image: gcr.io/vinaygo-gke-dev/simpleserver:v2.0.0
+  - name: coredns
+    image: gcr.io/vinaygo-gke-dev/coredns:filecaps
     imagePullPolicy: Always
     securityContext:
-      runAsUser: 1337
-      runAsGroup: 1337
+      runAsUser: 2004
+      runAsGroup: 2004
+      allowPrivilegeEscalation: false
       capabilities:
         drop:
         - ALL
         add:
         - NET_BIND_SERVICE
     command:
-    - server
-    - --port 80
+    - ./coredns

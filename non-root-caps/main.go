@@ -10,6 +10,7 @@ import (
 var port = flag.String("port", "80", "port to listen on")
 
 func main() {
+	flag.Parse()
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, "Hello World!")

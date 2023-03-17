@@ -3,10 +3,7 @@ kind: Pod
 metadata:
   name: non-root-init
 spec:
-  securityContext:
-    runAsUser: 2046
-    runAsGroup: 2046
-  initContainers:
+  containers:
   - name: non-root-init
     image: ubuntu
     securityContext:
@@ -15,14 +12,11 @@ spec:
     command:
     - "/bin/bash"
     - "-c"
-    - "chown 2046 /etc/srv/kubernetes/konnectivity-server"
-    volumeMounts:
-    - mountPath: /etc/srv/kubernetes/konnectivity-server
-      name: uds
-  containers:
-  - name: non-root
-    image: gcr.io/vinaygo-gke-dev/konnectivity-server:v1.0.0
-    imagePullPolicy: Always
+    - |-
+      chown 0:0 /etc/srv/kubernetes/konnectivity-server
+      if [[ -f /etc/srv/kubernetes/konnectivity-server/konnectivity-server.socket ]]; then
+        rm /etc/srv/kubernetes/konnectivity-server/konnectivity-server.socket
+      fi
     volumeMounts:
     - mountPath: /etc/srv/kubernetes/konnectivity-server
       name: uds

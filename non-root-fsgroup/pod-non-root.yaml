@@ -4,20 +4,18 @@ metadata:
   name: non-root
 spec:
   securityContext:
-    runAsUser: 1000
-    runAsGroup: 1000
+    runAsUser: 2046
+    runAsGroup: 2046
+    fsGroup: 2046
   containers:
   - name: non-root
-    image: ubuntu
-    command:
-    - "/bin/bash"
-    - "-c"
-    - "while true; do echo hello > /etc/non-root-config; sleep 10; done"
+    image: gcr.io/vinaygo-gke-dev/konnectivity-server:v1.0.0
+    imagePullPolicy: Always
     volumeMounts:
-    - mountPath: /etc/non-root-config
-      name: test-volume
+    - mountPath: /etc/srv/kubernetes/konnectivity-server
+      name: uds
   volumes:
-  - name: test-volume
+  - name: uds
     hostPath:
-      path: /etc/non-root-config
-      type: FileOrCreate
+      path: /etc/srv/kubernetes/konnectivity-server
+      type: DirectoryOrCreate
