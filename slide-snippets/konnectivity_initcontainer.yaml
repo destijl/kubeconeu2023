@@ -2,13 +2,15 @@
 
 
         initContainers:
-        - name: konnectivity-server-init-container
+        - name: non-root-init
+          image: ubuntu
+          securityContext:
+            runAsUser: 0
+            runAsGroup: 0
           command:
-          - /bin/bash
-          - '-c'
-          - |-
-            chown 2046:2046 /etc/srv/kubernetes/konnectivity-server &&
-            chmod g+w /etc/srv/kubernetes/konnectivity-server
+          - "/bin/bash"
+          - "-c"
+          - "chown 2046 /etc/srv/kubernetes/konnectivity-server"
           volumeMounts:
           - mountPath: /etc/srv/kubernetes/konnectivity-server
             name: konnectivity-uds
